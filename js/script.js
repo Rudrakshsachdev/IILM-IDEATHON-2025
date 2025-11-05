@@ -182,28 +182,54 @@
         fadeInOnScroll(); // Check on initial load
 
         // Add click effect to buttons
-        document.querySelectorAll('.btn, .register-btn').forEach(button => {
-            button.addEventListener('click', function(e) {
-                // Create ripple effect
-                const ripple = document.createElement('span');
-                const rect = this.getBoundingClientRect();
-                const size = Math.max(rect.width, rect.height);
-                const x = e.clientX - rect.left - size / 2;
-                const y = e.clientY - rect.top - size / 2;
+        // document.querySelectorAll('.btn, .register-btn').forEach(button => {
+        //     button.addEventListener('click', function(e) {
+        //         // Create ripple effect
+        //         const ripple = document.createElement('span');
+        //         const rect = this.getBoundingClientRect();
+        //         const size = Math.max(rect.width, rect.height);
+        //         const x = e.clientX - rect.left - size / 2;
+        //         const y = e.clientY - rect.top - size / 2;
                 
-                ripple.style.width = ripple.style.height = size + 'px';
-                ripple.style.left = x + 'px';
-                ripple.style.top = y + 'px';
-                ripple.classList.add('ripple');
+        //         ripple.style.width = ripple.style.height = size + 'px';
+        //         ripple.style.left = x + 'px';
+        //         ripple.style.top = y + 'px';
+        //         ripple.classList.add('ripple');
                 
-                this.appendChild(ripple);
+        //         this.appendChild(ripple);
                 
-                // Remove ripple after animation
-                setTimeout(() => {
-                    ripple.remove();
-                }, 600);
-            });
+        //         // Remove ripple after animation
+        //         setTimeout(() => {
+        //             ripple.remove();
+        //         }, 600);
+        //     });
+        // });
+
+        const buttons = document.querySelectorAll('.btn, .register-btn');
+
+if (buttons.length > 0) {
+    buttons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            // Create ripple effect
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.classList.add('ripple');
+
+            this.appendChild(ripple);
+
+            // Remove ripple after animation
+            setTimeout(() => ripple.remove(), 600);
         });
+    });
+}
+
 
         // Add CSS for ripple effect
         const style = document.createElement('style');
@@ -229,3 +255,4 @@
             }
         `;
         document.head.appendChild(style);
+
